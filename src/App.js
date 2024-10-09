@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import {useState} from 'react'
 
 function App() {
   return (
@@ -17,9 +18,25 @@ function App() {
         >
           Learn React
         </a>
+        <Button/>
       </header>
     </div>
   );
 }
 
 export default App;
+
+
+function Button(){
+  const [click, setClick] = useState(0)
+
+  function handleClick(){
+    setClick(click + 1);
+  }
+
+  return (
+    <>
+      <button onClick={handleClick}>You Clicked the button {click}</button>
+    </>
+  )
+}
