@@ -19,6 +19,7 @@ function App() {
           Learn React
         </a>
         <Button/>
+        <Label/>
       </header>
     </div>
   );
@@ -36,7 +37,22 @@ function Button(){
 
   return (
     <>
-      <button onClick={handleClick}>You Clicked the button {click}</button>
+      <button onClick={handleClick} style={{margin: "20px"}}>You Clicked the button {click}</button>
+    </>
+  )
+}
+
+function Label(){
+  const [value, setValue] = useState("");
+
+  function input(event){
+    setValue(event.target.value);
+  }
+
+  return(
+    <>
+      <input type="text" onChange={input} value={value} style={{margin: "20px"}}/>
+      <p>{value}</p>
     </>
   )
 }
