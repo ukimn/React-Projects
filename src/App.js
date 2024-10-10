@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        {/* <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
@@ -17,9 +17,10 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn React
-        </a>
-        <Button/>
-        <Label/>
+        </a> */}
+        {/* <Button/>
+        <Label/> */}
+        <MyForm/>
       </header>
     </div>
   );
@@ -54,5 +55,22 @@ function Label(){
       <input type="text" onChange={input} value={value} style={{margin: "20px"}}/>
       <p>{value}</p>
     </>
+  )
+}
+
+function MyForm(){
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+
+  return(
+    <form>
+      <label>Name:</label>
+      <input value={name} onChange={(e) => setName(e.target.value)}/>
+      <hr />
+      <label>Email:</label>
+      <input value={email} onChange={(e)=>setEmail(e.target.value)}/>
+      <hr />
+      <button type='submit'>Submit</button>
+    </form>
   )
 }
