@@ -59,11 +59,15 @@ function Label(){
 }
 
 function MyForm(){
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  // const [name, setName] = useState("");
+  // const [email, setEmail] = useState("");
+
+  const [form, setForm] = useState({})
 
   return(
-    <form>
+    <form onSubmit={(event)=>{
+      event.preventDefault()
+    }}>
       <label>Name:</label>
       <input value={name} onChange={(e) => setName(e.target.value)}/>
       <hr />
