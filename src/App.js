@@ -69,10 +69,10 @@ function MyForm(){
       event.preventDefault()
     }}>
       <label>Name:</label>
-      <input value={form.name} onChange={(e) => setForm(e.target.event)}/>
+      <input value={form.name} onChange={(e) => setForm({name: e.target.value})}/>
       <hr />
       <label>Email:</label>
-      <input value={form.email} onChange={(e)=> setForm(e.target.value)}/>
+      <input value={form.email} onChange={(e)=> setForm({email: e.target.value})}/>
       <hr />
       <button type='submit'>Submit</button>
     </form>
