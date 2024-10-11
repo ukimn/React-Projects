@@ -62,17 +62,17 @@ function MyForm(){
   // const [name, setName] = useState("");
   // const [email, setEmail] = useState("");
 
-  const [form, setForm] = useState({})
+  const [form, setForm] = useState({name: "", email: ""})
 
   return(
     <form onSubmit={(event)=>{
       event.preventDefault()
     }}>
       <label>Name:</label>
-      <input value={name} onChange={(e) => setName(e.target.value)}/>
+      <input value={form.name} onChange={(e) => setForm(e.target.event)}/>
       <hr />
       <label>Email:</label>
-      <input value={email} onChange={(e)=>setEmail(e.target.value)}/>
+      <input value={form.email} onChange={(e)=> setForm(e.target.value)}/>
       <hr />
       <button type='submit'>Submit</button>
     </form>
