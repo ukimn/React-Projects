@@ -20,7 +20,7 @@ function App() {
         </a> */}
         {/* <Button/>
         <Label/> */}
-        <MyForm/>
+        <Form/>
       </header>
     </div>
   );
@@ -43,6 +43,7 @@ function Button(){
   )
 }
 
+
 function Label(){
   const [value, setValue] = useState("");
 
@@ -58,23 +59,46 @@ function Label(){
   )
 }
 
-function MyForm(){
-  // const [name, setName] = useState("");
-  // const [email, setEmail] = useState("");
-
-  const [form, setForm] = useState({name: "", email: ""})
-
+function Form(){
+  // Use State Variables
+  const [form, setForm] = useState({name: "", email: "", age: 0, isStudent: false, info: ""})
+  // the forms
   return(
-    <form onSubmit={(event)=>{
-      event.preventDefault()
+    <form onSubmit={(e)=>{
+      e.preventDefault();
+      console.log(form)
     }}>
+      {/* Name Form */}
       <label>Name:</label>
-      <input value={form.name} onChange={(e) => setForm({name: e.target.value})}/>
+      <input type="text" value={form.name} onChange={(e)=>{setForm({...form, name: e.target.value})}}/>
       <hr />
+      {/* Finished */}
+
+      {/* Email Form */}
       <label>Email:</label>
-      <input value={form.email} onChange={(e)=> setForm({email: e.target.value})}/>
+      <input type="email" value={form.email} onChange={(e)=>{setForm({...form, email: e.target.value})}}/>
       <hr />
-      <button type='submit'>Submit</button>
+      {/* Finished */}
+
+      {/* Age Form */}
+      <label>Age:</label>
+      <input type='number' value={form.age} onChange={(e)=>{setForm({...form, age: e.target.value})}}/>
+      <hr />
+      {/* Finished */}
+
+      {/* Checkbox Form */}
+      <label>Are You student</label>
+      <input type="checkbox" checked={form.isStudent} onChange={(e)=>{setForm({...form, isStudent: e.target.checked})}}/>
+      <hr />
+      {/* finished */}
+
+      {/* TextArea Form */}
+      <textarea name="" id="" value={form.info} onChange={(e)=>{setForm({...form, info: e.target.value})}}></textarea>
+      <hr />
+      {/* finished */}
+
+      <button type='submit'>submit</button>
     </form>
   )
+
 }
