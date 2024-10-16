@@ -19,13 +19,13 @@ export default function App() {
   })
 
   function addDeviceName() {
+    setInput({...input, formOne: ""}); // Clear the input field
     setDevices([...devices, input.formOne]); // Add the input to the devices array
-    setInput(input = ""); // Clear the input field
   }
 
   function addLanguage() {
+    setInput({...input, formTwo: ""}); // Clear the input field
     setProgramming([...programming, input.formTwo]); // Add the input to the programming array
-    setInput(input = ""); // Clear the input field
   }
 
   return (
@@ -33,14 +33,14 @@ export default function App() {
       {deviceList}
 
       <div>
-        <input type="text" value={input.formOne} onChange={(e) => setInput({...input, formOne: e.target.value})} />
+        <input type="text" value={input.formOne} onChange={(e) => setInput({...input, formOne: e.target.value})} onKeyDown={(e)=>{if(e.key === "Enter"){addDeviceName()}}}/>
         <button onClick={addDeviceName}>Add Device</button>
       </div>
 
       {programmingList}
 
       <div>
-        <input type="text" value={input.formTwo} onChange={(e) => setInput({...input, formTwo: e.target.value})} style={{marginBottom: "40px"}}/>
+        <input type="text" value={input.formTwo} onChange={(e) => setInput({...input, formTwo: e.target.value})} style={{marginBottom: "40px"}} onKeyDown={(e)=>{if(e.key === "Enter"){addLanguage()}}}/>
         <button onClick={addLanguage}>Add Language</button>
       </div>
     </>
