@@ -1,31 +1,65 @@
 import { useState } from 'react';
 import './App.css';
 
+let nextId = 5;
+let nextIdTwo = 4;
+
 export default function App() {
   let [input, setInput] = useState({
     formOne: "", 
-    formTwo: ""
+    formTwo: "",
+    formThree: ""
   });
 
-  const [devices, setDevices] = useState(["Mac", "Linux", "Microsoft", "Samsung"]);
-  const [programming, setProgramming] = useState(["Python", "C#"])
+  const [devices, setDevices] = useState([
+    {id: 1, name: "Mac"}, 
+    {id: 2, name: "Windows"},
+    {id: 3, name: "Linux"},
+    {id: 4, name: "OS"}
+  ]);
 
-  const deviceList = devices.map((device, index) => {
-    return <li style={{ margin: "30px" }} key={index}>{device}</li>;
+  const [names, setNames] = useState([
+    {id: 1, name: "moaath"},
+    {id: 2, name: "mohummed"},
+    {id: 3, name: "Osama"}
+  ])
+
+  const deviceList = devices.map((device) => {
+    return <li style={{ margin: "30px" }} key={device.id}>{device.name} <button onClick={()=>{
+      del(device.id)
+    }}>X</button></li>;
   });
 
-  const programmingList = programming.map((item, index)=>{
-    return <li key={index} style={{margin: "40px"}}>{item}</li>
+  const namesList = names.map((Name)=>{
+    return <li style={{margin: "40px"}} key={Name.id}>{Name.name} <button onClick={()=>{
+      delNames(Name.id)
+    }}>X</button></li>
   })
 
-  function addDeviceName() {
-    setInput({...input, formOne: ""}); // Clear the input field
-    setDevices([...devices, input.formOne]); // Add the input to the devices array
+  function addDeviceName() { // Clear the input field
+    setDevices([...devices, {id: nextId, name: input.formOne}]); // Add the input to the devices array
+    nextId += 1;
   }
 
-  function addLanguage() {
-    setInput({...input, formTwo: ""}); // Clear the input field
-    setProgramming([...programming, input.formTwo]); // Add the input to the programming array
+  function del(id){
+
+    const newDevices = devices.filter((device)=>{
+      return device.id !== id; 
+    })
+
+    setDevices(newDevices)
+  }
+
+  function addNames(){
+    setNames([...names, {id: nextIdTwo, name: input.formTwo}])
+    nextIdTwo += 1;
+  }
+
+  function delNames(id){
+    const newNames = names.filter((name)=>{
+      return name.id !== id;
+    })
+    setNames(newNames)
   }
 
   return (
@@ -37,12 +71,13 @@ export default function App() {
         <button onClick={addDeviceName}>Add Device</button>
       </div>
 
-      {programmingList}
+      {namesList}
 
       <div>
-        <input type="text" value={input.formTwo} onChange={(e) => setInput({...input, formTwo: e.target.value})} style={{marginBottom: "40px"}} onKeyDown={(e)=>{if(e.key === "Enter"){addLanguage()}}}/>
-        <button onClick={addLanguage}>Add Language</button>
+        <input type="text" value={input.formTwo} onChange={(e)=>{setInput({...input, formTwo: e.target.value})}} onKeyDown={(e)=>{if(e.key === "Enter"){addNames()}}}/>
+        <button onClick={addNames}>Add Name</button>
       </div>
+
     </>
   );
 }
